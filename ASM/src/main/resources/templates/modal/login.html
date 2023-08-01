@@ -1,0 +1,65 @@
+<div th:fragment="login" class="modal fade" id="exampleModalToggle"
+		data-bs-backdrop="static" aria-hidden="true"
+		aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="exampleModalToggleLabel">Đăng
+						nhập</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+
+					<div
+						class="icon mb-4 d-flex align-items-center justify-content-center">
+						<img th:src="@{/assets/images/login/login.png}" class="bi me-2" width="70"
+							height="70">
+					</div>
+					
+						<div th:if="${loginMessage}" class="alert alert-warning" role="alert" th:text=${loginMessage}>
+							</div>
+					
+					 <h3 class="text-center mb-4">
+                                        <span class="title">Đăng nhập</span>
+                                    </h3> 
+
+					<form method="post" action="/login">
+						<div class="form-floating">
+							<input th:value="${username}" name="username" class="form-control"
+								placeholder="Username"> <label for="username">Tài
+								khoản</label>
+						</div>
+						<div class="form-floating my-2">
+							<input th:value="${password}" type="password" name="password"
+								class="form-control" placeholder="Password"> <label
+								for="password">Mật khẩu</label>
+						</div>
+
+						<div class="d-flex justify-content-between mb-3">
+							<div class="checkbox">
+								<label> <input type="checkbox" name="remember">
+									Lưu đăng nhập
+								</label>
+							</div>
+							<div>
+								<label> <a style="color: blue;" data-bs-dismiss="modal"
+									data-bs-toggle="modal" data-bs-target="#forgotPasswordModal">Quên
+										mật khẩu?</a>
+								</label>
+							</div>
+						</div>
+						<button class="w-100 btn btn-lg btn-primary">Đăng nhập</button>
+					</form>
+					<div
+						class="d-flex align-items-center justify-content-center mt-2 pb-4">
+						<p class="mb-0 me-2">Bạn chưa có tài khoản?</p>
+						<a style="color: blue;" data-bs-dismiss="modal"
+							data-bs-toggle="modal" data-bs-target="#exampleModalToggle1">Đăng
+							ký ngay</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>

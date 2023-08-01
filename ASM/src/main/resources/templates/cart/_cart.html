@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  th:replace="~{/layout/index :: dynamic(~{::main})}">
+
+<head>
+	<meta charset="UTF-8">
+	<!-- <title th:replace="${title}"></title> -->
+</head>
+
+<body>
+	
+	<main class="container w-100 mx-auto my-2" style="max-width: 1200px;">
+        <div style="box-shadow: 0 0 18px rgb(0 0 0 / 12%)">
+            <div class="card">
+                <div class="card-header">
+                    <p><span class="h2">Giỏ hàng </span><span class="h4">({{count()}} sản phẩm trong giỏ hàng)</span></p>
+                </div>
+
+
+                <div class="card-body">
+                    <table class="table">
+                        <tr>
+                            <th></th>
+                            <th>Tên sản phẩm</th>
+                            <th>Giá</th>
+                            <th>Số lượng</th>
+                            <th>Thành tiền</th>
+                            <th> </th>
+                        </tr>
+                        <tr ng-repeat="c in items" style="font-size: large;">
+                            <td class="d-flex justify-content-center"><img height="100px" width="100px"
+                                    th:src="@{/assets/images/product/{{c.image}}}" alt=""></td>
+                            <td>{{c.name}}</td>
+                            <td>{{c.price | number}} VNĐ</td>
+                            <td><button ng-click="subClick(c.id)" class="btn btn-primary " style="font-weight: bold;"  >-</button> {{c.quantity}} <button class="btn btn-primary " style="font-weight: bold;" ng-click="addClick(c.id)">+</button></td>
+
+                            <td>{{c.price*c.quantity | number}} VNĐ</td>
+                            
+                            <td> <a href="" style="color: #cecece;" ng-click="removeCart(c.id)"><i
+                                        class="fas fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                        <tr style="font-weight: bold; font-size: large;">
+                            <td colspan="4">Tổng tiền:</td>
+                            <td colspan="2"> {{amount()| number}}  VNĐ</td>
+                        </tr>
+                    </table>
+                    
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex bd-highlight">
+                   
+                       <button  type="button" class="me-auto p-2 bd-highlight btn me-2"> <<a href="#!">Tiếp tục mua sắm</a></button>
+                        <button type="button" class="btn btn-lg" style="color: #fff; background: linear-gradient(180deg,#f79429,#f7712e);">Thanh Toán</button>
+
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </main>
+	
+</body>
+
+</html>

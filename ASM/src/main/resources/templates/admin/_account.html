@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+th:replace="~{/admin/_admin :: dynamic(~{::main})}">
+<head>
+</head>
+<body>
+
+
+	<!-- CONTENT -->
+	<main >
+
+
+		<!-- MAIN -->
+		<div class="head-title">
+			<div class="left">
+				<h1>Quản lý tài khoản</h1>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-5">
+				<div class="card" style="height: 308px;">
+					<div class="card-body text-center">
+						<img
+							src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+							alt="avatar" class="rounded-circle img-fluid shadow"
+							style="width: 150px;">
+						<h5 class="my-3">John Smith</h5>
+
+					</div>
+				</div>
+			</div>
+			<div class="col-7">
+				<div class="card">
+					<div class="card-body ">
+						<div class="row">
+							<div class="col-sm-6">
+								<p class="mb-0">Họ tên</p>
+							</div>
+							<div class="col-sm-6">
+								<p class="text-muted mb-0">${sessionScope.account.fullname}</p>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-sm-6">
+								<p class="mb-0">Email</p>
+							</div>
+							<div class="col-sm-6">
+								<p class="text-muted mb-0">example@example.com</p>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-sm-6">
+								<p class="mb-0">Tên tài khoản</p>
+							</div>
+							<div class="col-sm-6">
+								<p class="text-muted mb-0">(067) 264-5678</p>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-sm-6">
+								<p class="mb-0">Chức vụ</p>
+							</div>
+							<div class="col-sm-6">
+								<p class="text-muted mb-0">(068) 765-4321</p>
+							</div>
+						</div>
+						<hr>
+						<div class="d-flex justify-content-center mb-2">
+							<button type="button" class="btn btn-outline-primary">Đổi
+								mật khẩu</button>
+							<button type="button" class="btn btn-outline-success ms-1">Cập
+								nhật</button>
+							<button type="button" class="btn btn-outline-danger ms-1">Đăng
+								xuất</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<hr>
+
+		<div class="container-fluid">
+			<div class="row g-3">
+				<div class="col-auto">
+					<label class="col-form-label" for="sel1"><strong>Lọc
+							tài khoản:</strong> </label>
+				</div>
+				<div class="col-auto">
+					<select class="form-select" id="vaiTro">
+						<c:forEach var="vaiTro" items="${listVaiTro}">
+							<option value="${vaiTro.tenVaiTro }">${vaiTro.tenVaiTro }</option>
+						</c:forEach>
+					</select>
+				</div>
+				<div class="col-auto">
+					<label class="col-form-label" for="sel1"><strong>Tìm
+							kiếm:</strong> </label>
+				</div>
+				<div class="col-auto">
+					<input type="text" class="form-control" id="timKiem"
+						placeholder="Nhập tên tài khoản">
+				</div>
+				<div class="col-auto ">
+					<button type="button" class="btn btn-success"
+						data-bs-toggle="modal" data-bs-target="#exampleModalToggle">Thêm
+						tài khoản</button>
+				</div>
+			</div>
+
+			<hr>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th scope="col">Tên tài khoản</th>
+						<th scope="col">Họ tên</th>
+						<th scope="col">Email</th>
+						<th scope="col">Chức vụ</th>
+						<th scope="col">Thao tác</th>
+
+					</tr>
+				</thead>
+				<tbody id="table">
+						<tr th:each="item : ${items}">
+							<td>[(${item.username})]</td>
+							<td>[(${item.fullname})]</td>
+							<td>[(${item.email})]</td>
+							<td>[(${item.role})]</td>
+							<td>
+								<button type="button" class="btn btn-outline-primary">Sửa</button>
+								<button type="button" class="btn btn-outline-danger">Xóa</button>
+							</td>
+						</tr>
+				</tbody>
+			</table>
+
+			<!-- Button trigger modal -->
+
+			<!-- Modal -->
+			<!--<div class="modal fade" id="exampleModalToggle"
+				data-bs-backdrop="static" aria-hidden="true"
+				aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h1 class="modal-title fs-5" id="exampleModalToggleLabel">Thêm
+								tài khoản</h1>
+							<button type="button" class="btn-close" data-bs-dismiss="modal"
+								aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+						
+						<form th:action="/add-account" th:object="${account}"  method="post" >
+							<div class="row">
+								<div class="col mb-3">
+									<label class="form-label">Họ và tên</label>
+									<input th:field="fullname" name="fullname" type="text" class="form-control" />
+									 <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> 
+								</div>
+
+								<div class="col mb-3">
+									<label for="exampleInputEmail1" class="form-label">Email</label>
+									<input th:field="email" name="email" type="text" class="form-control" />
+									 <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> 
+								</div>
+							</div>
+
+							<div class="mb-3">
+								<label for="exampleInputEmail1" class="form-label">Tên
+									tài khoản</label>
+								<input th:field="username"  type="text" class="form-control" />
+							</div>
+
+
+							<div class="mb-3">
+								<label for="exampleInputPassword1" class="form-label">Mật
+									khẩu</label>
+								<input th:field="password" name="password" type="password" class="form-control"
+									id="exampleInputPassword1" />
+							</div>
+							<div class="mb-3">
+							<label for="exampleInputPassword1" class="form-label">Nhập
+								lại mật khẩu</label> <input type="password" class="form-control"
+								id="exampleInputPassword1" name="confirmPassword">
+						</div>
+
+							<div class="d-flex justify-content-md-end">
+								<button type="submit" class="w-100 btn btn-primary">Đăng ký</button>
+							</div>
+						</form>
+							
+							</div>
+						
+					</div>
+				</div>
+			</div>-->
+			<!-- Modal -->
+
+
+
+		</div>
+		<!-- MAIN -->
+	</main>
+	<!-- CONTENT -->
+</body>
+</html>

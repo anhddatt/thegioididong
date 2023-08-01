@@ -1,0 +1,10 @@
+.title {
+    font-size: 40px;
+    background: -webkit-linear-gradient(#000000, #000000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.card-shadow{
+   border-radius: 1rem; 
+   box-shadow: 0 0 16px rgba(0,0,0,.11); 
+}

@@ -1,0 +1,18 @@
+<div th:fragment="mediaslider" id="carouselExample" class="carousel carousel-dark slide carousel-fade">
+	<div class="carousel-inner">
+		<div class="carousel-item active" style="background-color: rgb(125, 2, 3);">
+			<img th:src="@{/assets/images/media-slider/hinh1.png}" class="d-block mx-auto img-fluid" alt="hinh1">
+		</div>
+		<div class="carousel-item" style="background-color: rgb(178, 6, 11);">
+			<img th:src="@{/assets/images/media-slider/hinh2.png}" class="d-block mx-auto img-fluid " alt="hinh2">
+		</div>
+	</div>
+	<button class="carousel-control-prev" style="left: -4rem;" type="button" data-bs-target="#carouselExample"
+		data-bs-slide="prev">
+		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+	</button>
+	<button class="carousel-control-next" style="right: -4rem;" type="button" data-bs-target="#carouselExample"
+		data-bs-slide="next">
+		<span class="carousel-control-next-icon" aria-hidden="true"></span>
+	</button>
+</div>

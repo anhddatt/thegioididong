@@ -1,0 +1,196 @@
+<header style="background-color: #ffd400;">
+	<!-- HEADER MID -->
+	<nav class="container navbar navbar-expand-lg navbar-light bg-body-tertiary"
+		style="background-color:#ffd400; padding-bottom: 0;">
+		<div class="container-fluid col-2" style="width: 1244px;">
+			<ul class="nav">
+				<li class="nav-item ">
+					<a class="navbar-brand" href="/">
+						<img th:src="@{/assets/images/header/TGDD_Logo.png}" alt="" width="228" height="44"
+							class="d-inline-block align-text-top">
+					</a>
+				</li>
+				<li class="nav-item d-sm-none d-xl-block d-print-block">
+					<a class="btn p-0 m-2" style="color: black; background-color: rgba(255,172,10,.6);" href="#"
+						role="button">
+						<div class="text-start" style="width: 130px; line-height: 16px; height: 32px; font-size: 11px;">
+							Xem giá, tồn kho tại:
+							<p class="text-start fw-bold ">Công viên phần...</p>
+						</div>
+					</a>
+				</li>
+				<!-- Tìm kiếm -->
+				<li class="nav-item">
+					<form class="d-flex input-group" style="width: 300px; background-color: #ffd400;">
+						<!-- <a href="#!find" style="text-decoration: none;">   -->
+						<input class="form-control mx-0 m-2" ng-model="search.name" type="text"
+							style="border: 0; border-radius: 0.25rem 0 0 0.25rem; width: 250px;"
+							placeholder="Bạn tìm gì..." aria-label="Search">
+						<button type="button" class="btn mx-0 m-2" style="height: 36px; background-color: #fff;">
+							<a href="#!find"><i class="fas fa-search" style="color: black;"></i></a>
+						</button>
+					</form>
+
+				</li>
+				<!-- Tìm kiếm end -->
+				<li class="nav-item d-sm-none d-xxl-block d-print-block">
+					<button class="btn badge text-wrap fw-normal m-2"
+						style="width: 6rem; height: 40px; background-color: rgba(255,172,10,.6); color:black; ">
+						Lịch sử đơn hàng
+					</button>
+				</li>
+				<li class="nav-item d-none d-lg-block d-print-block">
+					<a href="#!cart"><button class="btn badge m-2"
+							style="width: 8rem; height: 40px; background-color: rgba(255,172,10,.6); color:black; ">
+							<img th:src="@{/assets/images/header/shopping-cart.svg}" alt="">
+							Giỏ hàng
+							<div class="d-inline" ng-show="count() > 0">
+								({{count()}})
+							</div>
+						</button></a>
+				</li>
+				<li class="nav-item d-sm-none d-xl-block d-print-block">
+					<a class="nav-link active text-center p-2" style="font-size: 14px; color: black;"
+						aria-current="page" href="#">24h <br> Công nghệ</a>
+				</li>
+				<!--<li class="nav-item d-sm-none d-xl-block d-print-block">
+					<a class="nav-link m-2 p-2"
+						style="font-size: 14px; color: black; border-left:1px solid #ffe56c; border-right:1px solid #ffe56c;"
+						aria-current="page" href="#">Hỏi Đáp</a>
+				</li>-->
+				
+				<li th:unless="${#request?.remoteUser}" class="nav-item d-sm-none d-xl-block d-print-block">
+					<form th:action="@{/home/login}" method="post">
+					<a class="nav-link mx-0 m-2 p-2" onclick="this.parentNode.submit(); "
+						 style="font-size: 14px; color: black;border-left: 1px solid #ffe56c;" >Đăng
+						nhập</a></form>
+				</li>
+				
+				<th:block th:if="${#request?.remoteUser}">
+				<li class="nav-item dropdown" >
+					<a class="nav-link dropdown-toggle text-dark m-2 p-2" role="button"
+						style="font-size: 14px; color: black; border-left: 1px solid #ffe56c; border-right: 1px solid #ffe56c;"
+						data-bs-toggle="dropdown" href="#" aria-expanded="false"
+						>[[${session.account.fullname}]]</a>
+					<ul class="dropdown-menu" style="background-color: #ffd400;">
+						<li><a class="dropdown-item" href="/home/profile">Thông tin</a></li>
+					
+					<li th:if="${#request?.isUserInRole('ROLE_ADMIN')}"> <a class="dropdown-item" href="/admin/home">Quản lí</a></li>
+
+			
+						<li>
+							<hr class="dropdown-divider">
+						</li>
+						<form th:action="@{/security/logout}" method="post">
+    <button type="submit" class="dropdown-item">Đăng xuất</button>
+</form>
+					</ul>
+				</li>
+</th:block>
+			</ul>
+		</div>
+	</nav>
+	<!--  -->
+	<!-- HEADER MAIN -->
+
+	<nav class="container  navbar navbar-expand-lg navbar-light" style="background-color:#ffd400; padding-top: 0;">
+		<div class="container-fluid" style="width: 1220px;">
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+				<ul class="nav justify-content-center ">
+					<li class="nav-item">
+						<a class="nav-link text-dark p-0 m-2" style="font-size:14px;" aria-current="page" href="#">
+							<img th:src="@{/assets/images/header/icon-phone-96x96-2.png}" class="img-fluid "
+								style="width: 20px; height: 20px;" alt="">
+							Điện thoại</a>
+					</li>
+					<li class="nav-item ">
+						<a class="nav-link text-dark" style="font-size:14px;">
+							<img th:src="@{/assets/images/header/icon-laptop-96x96-1.png}" class="mx-auto img-fluid"
+								style="width: 20px; height: 20px;" alt="">
+							Laptop</a>
+					</li>
+					<li class="nav-item ">
+						<a class="nav-link text-dark" style="font-size:14px;" href="#">
+							<img th:src="@{/assets/images/header/icon-tablet-96x96-1.png}" class="mx-auto img-fluid"
+								style="width: 20px; height: 20px;" alt="">
+							Tablet</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle text-dark" style="font-size:14px;" href="#" role="button"
+							data-bs-toggle="dropdown" aria-expanded="false">
+							<img th:src="@{/assets/images/header/icon-phu-kien-96x96-1.png}" class="mx-auto img-fluid"
+								style="width: 20px; height: 20px;" alt="">
+							Phụ kiện
+						</a>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item" href="#">Action</a></li>
+							<li><a class="dropdown-item" href="#">Another action</a></li>
+							<li>
+								<hr class="dropdown-divider">
+							</li>
+							<li><a class="dropdown-item" href="#">Something else here</a></li>
+						</ul>
+					</li>
+					<li class="nav-item ">
+						<a class="nav-link text-dark" style="font-size:14px;" href="#">
+							<img th:src="@{/assets/images/header/icon-smartwatch-96x96-1.png}" class="mx-auto img-fluid"
+								style="width: 20px; height: 20px;" alt="">
+							Smartwatch</a>
+					</li>
+					<li class="nav-item ">
+						<a class="nav-link text-dark" style="font-size:14px;" href="#">
+							<img th:src="@{/assets/images/header/watch-icon-96x96.png}" class="mx-auto img-fluid"
+								style="width: 20px; height: 20px;" alt="">
+							Đồng hồ</a>
+					</li>
+					<li class="nav-item ">
+						<a class="nav-link text-dark" style="font-size:14px;" href="#">
+							<img th:src="@{/assets/images/header/icon-header-may-cu-30x30.png}"
+								class="mx-auto img-fluid" style="width: 20px; height: 20px;" alt="">
+							Máy cũ giá rẻ</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle text-dark" style="font-size:14px;" href="#" role="button"
+							data-bs-toggle="dropdown" aria-expanded="false">
+							<img th:src="@{/assets/images/header/icon-pc-96x96.png}" class="mx-auto img-fluid"
+								style="width: 20px; height: 20px;" alt="">
+							PC, Máy in
+						</a>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item" href="#">Action</a></li>
+							<li><a class="dropdown-item" href="#">Another action</a></li>
+							<li>
+								<hr class="dropdown-divider">
+							</li>
+							<li><a class="dropdown-item" href="#">Something else here</a></li>
+						</ul>
+					</li>
+					<li class="nav-item ">
+						<a class="nav-link text-dark" style="font-size:14px;" href="#">
+							Sim, Thẻ cào</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle text-dark" style="font-size:14px;" href="#" role="button"
+							data-bs-toggle="dropdown" aria-expanded="false">
+							Dịch vụ tiện ích
+						</a>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item" href="#">Action</a></li>
+							<li><a class="dropdown-item" href="#">Another action</a></li>
+							<li>
+								<hr class="dropdown-divider">
+							</li>
+							<li><a class="dropdown-item" href="#">Something else here</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!--  -->
+</header>
