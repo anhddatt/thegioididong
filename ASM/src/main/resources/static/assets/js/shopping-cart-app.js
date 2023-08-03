@@ -10,6 +10,35 @@ app.controller("myCtrl1", function($scope, $http) {
 	$http.get('/rest/category/list').then(function(response) {
 		$scope.categorys = response.data;
 	});
+	$http.get('/rest/products/prodwithcate').then(function(response) {
+		$scope.prodwcate = response.data;
+	});
+
+	$scope.create = function() {
+		var item = angular.copy($scope.form);
+		var url = `/rest/products/create`;
+		$http.post(url, item).then(function(response) {
+			$scope.key = resp.data.id;
+			$scope.items[$scope.key] = item;
+			productService.save(item).then(function(savedProduct) {
+				arlert('Sản phẩm đã được lưu vào cơ sở dữ liệu:', savedProduct);
+			}, function(error) {
+				// Xử lý lỗi nếu có
+				alert('Lỗi khi lưu sản phẩm vào cơ sở dữ liệu:', error);
+			});
+
+		})
+	}
+
+	$scope.edit = function(key) {
+		var url = `/rest/products/${key}`;
+		$http.get(url).then(function(response) {
+			$scope.form = response.data;
+			$scope.key = key;
+		})
+	}
+
+
 	$scope.addCart = function(id) {
 		var item = this.items.find(item => item.id == id);
 
@@ -58,12 +87,12 @@ app.controller("myCtrl1", function($scope, $http) {
 			}
 		}*/
 	}
-	
-	
-	
+
+
+
 	$scope.subClick = function(id) {
 		var item = this.items.find(item => item.id == id);
-		
+
 		if (item.quantity > 1) {
 			item.quantity -= 1;
 			this.saveToLocalStorage();
@@ -75,14 +104,14 @@ app.controller("myCtrl1", function($scope, $http) {
 			}
 		}*/
 	}
-	
+
 	$scope.amount = function() {
 		return this.items
-		.map(item => item.quantity * item.price)
-		.reduce((total, quantity) => total += quantity, 0);
+			.map(item => item.quantity * item.price)
+			.reduce((total, quantity) => total += quantity, 0);
 	}
 	$scope.count = function() {
-		  return this.items.length;
+		return this.items.length;
 	}
 
 

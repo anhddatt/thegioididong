@@ -19,11 +19,51 @@
                     <label class="col-form-label" for="sel1"><strong>Tìm kiếm:</strong> </label>
                 </div>
                 <div class="col-auto">
-                    <input type="text" class="form-control" id="timKiem" placeholder="Nhập tên danh mục">
+                    <input type="text" ng-model="search.name" class="form-control" id="timKiem" placeholder="Nhập tên danh mục">
                 </div>
                 <div class="col-auto ">
                     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModalToggle">Thêm danh mục</button>
                 </div>
+                
+                
+                
+                
+                <div class="row g-3">
+				<div class="col-auto">
+					<label class="col-form-label" for="sel1"><strong>Danh
+							mục:</strong> </label>
+				</div>
+				<div class="col-auto">
+					<form action="/admin/product-fill" method="get">
+
+						<select type="submit" name="categoryId"
+							class="form-control fill mr-3" style="min-width: 180px;"
+							onchange="this.form.submit()">
+							<option value="all">Tất cả</option>
+							<c:forEach items="${categories}" var="category">
+								<option value="${category.id}"
+									<c:if test="${category.id == selectedId}">selected</c:if>>
+									${category.name}</option>
+							</c:forEach>
+						</select>
+				</div>
+				<div class="col-auto">
+					<label class="col-form-label" for="sel1"><strong>Tìm
+							kiếm:</strong> </label>
+				</div>
+				<div class="col-auto">
+					<input class="form-control" id="timKiem"
+						placeholder="Nhập tên danh mục">
+
+				</div>
+				<div class="col-auto ">
+					<button type="button" class="btn btn-success"
+						data-bs-toggle="modal" data-bs-target="#add-pro">Thêm sản
+						phẩm</button>
+				</div>
+			</div>
+                
+                
             </div>
 
             <hr>
@@ -40,14 +80,14 @@
                     </thead>
                     <tbody id="table">
                         
-                            <tr ng-repeat="sp in products">
+                            <tr ng-repeat="sp in prodwcate | filter:search">
                                 <td><img class="img-fluid" width="80px" height="80px" th:src="@{/assets/images/product/{{sp.image}}}" alt=""></td>
                                 <td>{{sp.name}}</td>
                                 <td>{{sp.price | number}} VNĐ</td>
                                 <td>{{sp.quantity}}</td>
-                                <td>{{sp.category.name})]</td>
+                                <td>{{sp.categoryName}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-outline-primary">Sửa</button>
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#add-pro" ng-click="edit(sp.id)" class="btn btn-outline-primary">Sửa</button>
                                     <button type="button" class="btn btn-outline-danger">Xóa</button>
                                 </td>
                             </tr>
