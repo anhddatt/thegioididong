@@ -7,8 +7,12 @@ app.controller("myCtrl1", function($scope, $http) {
 		// Gán danh sách sản phẩm từ phản hồi API vào $scope.products
 		$scope.products = response.data;
 	});
+	$http.get('/rest/accounts/list').then(function(response) {
+		// Gán danh sách sản phẩm từ phản hồi API vào $scope.accounts
+		$scope.accounts = response.data;
+	});
 	$http.get('/rest/category/list').then(function(response) {
-		$scope.categorys = response.data;
+		$scope.categories = response.data;
 	});
 	$http.get('/rest/products/prodwithcate').then(function(response) {
 		$scope.prodwcate = response.data;
