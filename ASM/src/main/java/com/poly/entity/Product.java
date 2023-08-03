@@ -31,7 +31,7 @@ public class Product implements Serializable{
 	private Integer quantity;
 
 	@JsonIgnore
-	@ManyToOne @JoinColumn(name = "CategoryId")
+	@ManyToOne @JoinColumn(name = "category_id")
 	private Category category;
 	@JsonIgnore
 	@OneToMany(mappedBy = "product")
@@ -39,6 +39,12 @@ public class Product implements Serializable{
 	
 	  public void setImage(String image) {
 	        this.image = image;
+	    }
+	  public String getCategoryId() {
+	        if (category != null) {
+	            return category.getId();
+	        }
+	        return null;
 	    }
 	
 }

@@ -4,6 +4,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -29,10 +30,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-		.antMatchers("/**", "/assets/**","/home/**").permitAll()	
-		.anyRequest().authenticated().and()	
-		
-		.formLogin().loginPage("/home/login").loginProcessingUrl("/security/login")
+		.antMatchers("/rest/**","/**", "/assets/**","/home/**").permitAll()	
+		.antMatchers(HttpMethod.POST, "/rest/products/put").permitAll(); // Tạm thời tắt bảo mật cho POST
+		http .csrf().disable() .authorizeRequests() .anyRequest().permitAll(); 
+		http.formLogin().loginPage("/home/login").loginProcessingUrl("/security/login")
 				.defaultSuccessUrl("/security/login/success", false).failureUrl("/security/login/error");
 		
 		http.logout().logoutUrl("/security/logout").logoutSuccessUrl("/security/logout/success");
