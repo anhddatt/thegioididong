@@ -11,7 +11,7 @@ app.config(function ($routeProvider) {
             controller: "myCtrl1"
         })
         .when("admin/account", {
-            templateUrl: "views/admin/_account.jsp" + Math.random(),
+            templateUrl: "admin/_account.html" + Math.random(),
             controller: "myCtrl1"
         })
         .when("/find", {
@@ -19,7 +19,7 @@ app.config(function ($routeProvider) {
             controller: "myCtrl1"
         })
         .otherwise({
-            templateUrl: "views/admin/_account.jsp",
+            templateUrl: "admin/_account.html",
             controller: "myCtrl1"
         })
 
