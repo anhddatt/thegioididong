@@ -124,11 +124,11 @@ th:replace="~{/admin/_admin :: dynamic(~{::main})}">
 					</tr>
 				</thead>
 				<tbody id="table">
-						<tr ng-repeat="item in accounts">
-							<td>{{item.username}}</td>
-							<td>{{item.fullname}}</td>
-							<td>{{item.email}}</td>
-							<td>{{item.role}}</td>
+						<tr th:each="item : ${items}">
+							<td>[(${item.username})]</td>
+							<td>[(${item.fullname})]</td>
+							<td>[(${item.email})]</td>
+							<td>[(${item.role})]</td>
 							<td>
 								<button type="button" data-bs-toggle="modal1" data-bs-target="#add-acc" ng-click="edit(sp.id)" class="btn btn-outline-primary">Sửa</button>
 								<button type="button" class="btn btn-outline-danger">Xóa</button>

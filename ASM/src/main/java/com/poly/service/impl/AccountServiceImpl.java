@@ -23,6 +23,4 @@ public class AccountServiceImpl implements AccountService {
 	public Account finById(String username) {
 		return accdao.findById(username).get();
 	}
-
-	
 }
