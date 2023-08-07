@@ -32,11 +32,11 @@ public class Product implements Serializable{
 
 	@JsonIgnore
 	@ManyToOne @JoinColumn(name = "category_id")
-	private Category category;
+	Category category;
 	@JsonIgnore
 	@OneToMany(mappedBy = "product")
 	private List<OrderDetail> orderDetail;
-	
+		
 	  public void setImage(String image) {
 	        this.image = image;
 	    }
@@ -46,5 +46,8 @@ public class Product implements Serializable{
 	        }
 	        return null;
 	    }
+
+	 
+	
 	
 }
