@@ -106,7 +106,7 @@ th:replace="~{/admin/_admin :: dynamic(~{::main})}">
 				</div>
 				<div class="col-auto ">
 					<button type="button" class="btn btn-success"
-						data-bs-toggle="modal1" data-bs-target="#add-acc">Thêm
+						data-bs-toggle="modal" data-bs-target="#exampleModalToggle">Thêm
 						tài khoản</button>
 				</div>
 			</div>
@@ -130,7 +130,7 @@ th:replace="~{/admin/_admin :: dynamic(~{::main})}">
 							<td>[(${item.email})]</td>
 							<td>[(${item.role})]</td>
 							<td>
-								<button type="button" data-bs-toggle="modal1" data-bs-target="#add-acc" ng-click="edit(sp.id)" class="btn btn-outline-primary">Sửa</button>
+								<button type="button" class="btn btn-outline-primary">Sửa</button>
 								<button type="button" class="btn btn-outline-danger">Xóa</button>
 							</td>
 						</tr>
