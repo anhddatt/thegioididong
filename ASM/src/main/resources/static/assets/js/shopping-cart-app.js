@@ -25,36 +25,12 @@ app.controller("myCtrl1", function($scope, $http) {
 			$scope.key = resp.data.id;
 			$scope.items[$scope.key] = item;
 			productService.save(item).then(function(savedProduct) {
-				alert('Sản phẩm đã được lưu vào cơ sở dữ liệu:', savedProduct);
+				arlert('Sản phẩm đã được lưu vào cơ sở dữ liệu:', savedProduct);
 			}, function(error) {
 				// Xử lý lỗi nếu có
 				alert('Lỗi khi lưu sản phẩm vào cơ sở dữ liệu:', error);
 			});
 
-		})
-	}
-
-	$scope.createAcc = function() {
-		var item = angular.copy($scope.formAcc);
-		var url = `/rest/accounts/create`;
-		$http.post(url, item).then(function(response) {
-			$scope.key = resp.data.id;
-			$scope.items[$scope.key] = item;
-			accountService.save(item).then(function(savedAccount) {
-				alert('tài khoản đã được lưu vào cơ sở dữ liệu:', savedAccount);
-			}, function(error) {
-				// Xử lý lỗi nếu có
-				alert('Lỗi khi lưu tài khoản vào cơ sở dữ liệu:', error);
-			});
-
-		})
-	}
-
-	$scope.editAcc = function(key) {
-		var url = `/rest/accounts/${key}`;
-		$http.get(url).then(function(response) {
-			$scope.formAcc = response.data;
-			$scope.key = key;
 		})
 	}
 

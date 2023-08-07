@@ -35,38 +35,24 @@ public class ProductServiceImpl implements ProductService {
 		List<ProductDTO> productDTOList = new ArrayList<>();
 		List<Product> productList = findAll();
 		List<Category> categoryList = cateService.findAllCategory();
-		
-		productList.forEach(product -> {
+
+		for (Product product : productList) {
 			ProductDTO productDTO = new ProductDTO();
 			productDTO.setId(product.getId());
 			productDTO.setName(product.getName());
 			productDTO.setImage(product.getImage());
 			productDTO.setPrice(product.getPrice());
 			productDTO.setQuantity(product.getQuantity());
-			categoryList.forEach(category -> {
+
+			for (Category category : categoryList) {
 				if (product.getCategoryId() == category.getId()) {
 					productDTO.setCategoryName(category.getName());
+					break;
 				}
-			});
+			}
+
 			productDTOList.add(productDTO);
-		});
-		// for (Product product : productList) {
-		// 	ProductDTO productDTO = new ProductDTO();
-		// 	productDTO.setId(product.getId());
-		// 	productDTO.setName(product.getName());
-		// 	productDTO.setImage(product.getImage());
-		// 	productDTO.setPrice(product.getPrice());
-		// 	productDTO.setQuantity(product.getQuantity());
-
-		// 	for (Category category : categoryList) {
-		// 		if (product.getCategoryId() == category.getId()) {
-		// 			productDTO.setCategoryName(category.getName());
-		// 			break;
-		// 		}
-		// 	}
-
-		// 	productDTOList.add(productDTO);
-		// }
+		}
 
 		return productDTOList;
 	}
